@@ -5,7 +5,10 @@ import numpy as np
 
 from array_utils.points import rasterize
 from pkg_utils.package_utils import pip_install
-pip_install("OSMPythonTools")
+try:
+    import OSMPythonTools
+except ModuleNotFoundError:
+    pip_install("OSMPythonTools")
 from OSMPythonTools.overpass import overpassQueryBuilder, Overpass
 
 
@@ -73,8 +76,7 @@ def get_roads(bbox, osm_values, buffer_meters, dir_write, filename, crs):
     file_tmp = os.path.join(dir_write, "tmp.gpkg")
     if not os.path.exists(fwrite):
         roads = []
-        offset = 0.00002
-        offset = 3 # meters
+        offset = 5  # meters
         buffer_dist = "buffer_distance"
         # buffer according to road type
         m, t, p, s, ter = "motorway", "trunk", "primary", "secondary", "tertiary"
