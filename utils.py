@@ -76,7 +76,7 @@ def get_roads(bbox, osm_values, buffer_meters, dir_write, filename, crs):
     file_tmp = os.path.join(dir_write, "tmp.gpkg")
     if not os.path.exists(fwrite):
         roads = []
-        offset = 5  # meters
+        offset = 7.5  # meters
         buffer_dist = "buffer_distance"
         # buffer according to road type
         m, t, p, s, ter = "motorway", "trunk", "primary", "secondary", "tertiary"
